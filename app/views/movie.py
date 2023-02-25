@@ -15,21 +15,18 @@ class MovieView(Resource):
     """ Получение всех фильмов """
 
     def get(self):
-        all_movies = movie_service.get_all()
+        director_id = request.args.get("director_id")
+        genre_id = request.args.get("genre_id")
+        year = request.args.get("year")
+        filters = {"director_id": director_id,
+                   "genre_id": genre_id,
+                   "year": year}
+        all_movies = movie_service.get_all(filters)
         return movies_schema.dump(all_movies), 200
 
 
 
-        # director_id = request.args.get('director_id')
-        # genre_id = request.args.get('genre_id')
-        # if director_id:
-        #     movies = db.session.query(Movie).filter(Movie.director_id == int(director_id)).all()
-        #     return movies_schema.dump(movies), 200
-        # elif genre_id:
-        #     movies = db.session.query(Movie).filter(Movie.genre_id == int(genre_id)).all()
-        #     return movies_schema.dump(movies), 200
-        #
-        # return movies_schema.dump(Movie.query.all()), 200
+
 
     """ Добавление фильма """
 

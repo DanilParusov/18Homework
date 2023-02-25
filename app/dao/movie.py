@@ -11,6 +11,15 @@ class MovieDAO:
     def get_all(self):
         return self.session.query(Movie).all()
 
+    def get_by_director_id(self, did):
+        return self.session.query(Movie).filter(Movie.director_id == did).all()
+
+    def get_by_genre_id(self, gid):
+        return self.session.query(Movie).filter(Movie.genre_id == gid).all()
+
+    def get_by_year(self, year):
+        return self.session.query(Movie).filter(Movie.year == year).all()
+
     def create(self, data):
         movie = Movie(**data)
 
@@ -30,4 +39,3 @@ class MovieDAO:
 
         self.session.delete(movie)
         self.session.commit()
-
