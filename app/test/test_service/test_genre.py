@@ -11,8 +11,8 @@ from app.service.genre import GenreService
 def genre_dao():
     genre_dao = GenreDAO(None)
 
-    g1 = Genre(id=1, title="Horror")
-    g2 = Genre(id=2, title="Comedy")
+    g1 = Genre(id=1, name="Horror")
+    g2 = Genre(id=2, name="Comedy")
 
     genre_dao.get_one = MagicMock(return_value=g1)
     genre_dao.get_all = MagicMock(return_value=[g1, g2])
